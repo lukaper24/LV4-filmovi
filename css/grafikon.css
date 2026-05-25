@@ -1,0 +1,328 @@
+/* =========================
+   OSNOVNI RESET I VARIJABLE
+   ========================= */
+
+:root {
+    --primary-color: #7b1e3a;
+    --secondary-color: #f4b400;
+    --background-color: #f8f6f3;
+    --surface-color: #ffffff;
+    --text-color: #222222;
+    --border-color: #dddddd;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius: 12px;
+    --max-width: 1200px;
+
+    --komedija: #f4b400;
+    --drama: #d94f4f;
+    --animacija: #3f8efc;
+    --krimic: #9c9c9c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.site-header {
+    background: linear-gradient(90deg, var(--primary-color), var(--drama));
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.site-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================
+   SKRIVENA NAVIGACIJA
+   ========================= */
+
+.nav-wrapper {
+    position: relative;
+    max-width: var(--max-width);
+    margin: 1rem auto 0;
+    padding: 0 1rem;
+}
+
+.menu-toggle {
+    background-color: #2f2f2f;
+    color: white;
+    border: none;
+    padding: 0.9rem 1.3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.main-nav {
+    position: absolute;
+    top: 100%;
+    left: 1rem;
+    margin-top: 0.4rem;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 1rem;
+}
+
+.main-nav li + li {
+    margin-top: 0.8rem;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+.main-nav a:hover {
+    color: var(--secondary-color);
+}
+
+.nav-wrapper:hover .main-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* =========================
+   GLAVNI RASPORED
+   ========================= */
+
+.chart-page {
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.chart-section,
+.chart-info {
+    background-color: var(--surface-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+}
+
+.chart-section h2,
+.chart-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.chart-description,
+.chart-info p {
+    margin-bottom: 1rem;
+}
+
+/* =========================
+   HISTOGRAM
+   ========================= */
+
+.bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.bar-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.bar-track {
+    background-color: #f1d0d0;
+    border-radius: 999px;
+    height: 36px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    border-radius: 999px;
+    animation: growBar 1.2s ease forwards;
+    transform-origin: left;
+}
+
+.bar-komedija {
+    background: linear-gradient(90deg, var(--komedija), #ffd45c);
+}
+
+.bar-drama {
+    background: linear-gradient(90deg, var(--drama), #ef7a7a);
+}
+
+.bar-animacija {
+    background: linear-gradient(90deg, var(--animacija), #7eb3ff);
+}
+
+.bar-krimic {
+    background: linear-gradient(90deg, var(--krimic), #cfcfcf);
+}
+
+.value-1 {
+    width: 50%;
+}
+
+.value-2 {
+    width: 100%;
+}
+
+@keyframes growBar {
+    from {
+        width: 0;
+    }
+}
+
+/* =========================
+   PIE CHART
+   ========================= */
+
+.pie-wrapper {
+    display: none;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.pie-chart {
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--komedija) 0% 33%,
+        var(--drama) 33% 66%,
+        var(--animacija) 66% 83%,
+        var(--krimic) 83% 100%
+    );
+    box-shadow: var(--shadow);
+    animation: fadeInChart 1s ease;
+}
+
+@keyframes fadeInChart {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.legend-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.legend-color.komedija {
+    background-color: var(--komedija);
+}
+
+.legend-color.drama {
+    background-color: var(--drama);
+}
+
+.legend-color.animacija {
+    background-color: var(--animacija);
+}
+
+.legend-color.krimic {
+    background-color: var(--krimic);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.site-footer {
+    margin-top: 2rem;
+    background-color: #2f2f2f;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+    .chart-page {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header h1 {
+        font-size: 2rem;
+    }
+
+    .bar-chart {
+        display: none;
+    }
+
+    .pie-wrapper {
+        display: block;
+    }
+
+    .chart-section,
+    .chart-info {
+        padding: 1rem;
+    }
+}

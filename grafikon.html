@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tag za SEO: opis sadržaja stranice s grafikonima -->
+    <meta name="description" content="Grafički prikaz filmskih podataka pomoću CSS-only histograma i pie charta.">
+    <title>Filmoteka | Grafikon</title>
+    <link rel="stylesheet" href="css/grafikon.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>Filmoteka</h1>
+        <p>Vizualizacija podataka o filmovima pomoću CSS grafikona</p>
+    </header>
+
+    <div class="nav-wrapper">
+        <button class="menu-toggle" aria-label="Prikaži navigaciju">☰ Menu</button>
+
+        <nav class="main-nav" aria-label="Glavna navigacija">
+            <ul>
+                <li><a href="index.php">Početna</a></li>
+                <li><a href="movies.php">Filmovi</a></li>
+                <li><a href="gallery.php">Galerija</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="chart-page">
+        <section class="chart-section" aria-labelledby="grafikon-naslov">
+            <h2 id="grafikon-naslov">Zastupljenost žanrova filmova</h2>
+            <p class="chart-description">
+                Grafikon prikazuje broj filmova po žanrovima na temelju podataka iz tablice na početnoj stranici.
+            </p>
+
+            <!-- Histogram za veće ekrane -->
+            <div class="bar-chart" aria-label="Histogram žanrova filmova">
+                <div class="bar-row">
+                    <span class="label">Komedija (2)</span>
+                    <div class="bar-track">
+                        <div class="bar value-2 bar-komedija"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span class="label">Drama (2)</span>
+                    <div class="bar-track">
+                        <div class="bar value-2 bar-drama"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span class="label">Animacija (1)</span>
+                    <div class="bar-track">
+                        <div class="bar value-1 bar-animacija"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span class="label">Krimić (1)</span>
+                    <div class="bar-track">
+                        <div class="bar value-1 bar-krimic"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pie chart za manje ekrane -->
+            <div class="pie-wrapper" aria-label="Kružni grafikon žanrova filmova">
+                <div class="pie-chart"></div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-color komedija"></span>
+                        <span>Komedija (33%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color drama"></span>
+                        <span>Drama (33%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color animacija"></span>
+                        <span>Animacija (17%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color krimic"></span>
+                        <span>Krimić (17%)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="chart-info" aria-label="Dodatne informacije o grafikonu">
+            <h2>Objašnjenje grafikona</h2>
+            <p>
+                Na desktop verziji koristi se histogram jer jasno prikazuje usporedbu broja filmova po žanrovima.
+            </p>
+            <p>
+                Na manjim ekranima prikazuje se kružni grafikon kako bi se prostor bolje iskoristio i prikaz ostao pregledan.
+            </p>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Filmoteka | Web programiranje</p>
+    </footer>
+
+</body>
+</html>
