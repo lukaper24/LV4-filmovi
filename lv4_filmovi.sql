@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2026 at 05:59 PM
+-- Generation Time: May 25, 2026 at 07:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -100,6 +100,56 @@ INSERT INTO `movies` (`id`, `title`, `genre`, `year`, `country`, `duration`, `ra
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `photos`
+--
+
+CREATE TABLE `photos` (
+  `id` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `uploaded_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`id`, `filename`, `description`, `uploaded_by`, `created_at`) VALUES
+(1, '1779726868_traktor.jpg', NULL, 1, '2026-05-25 16:34:28'),
+(2, '1779727088_slika1.jpg', NULL, 1, '2026-05-25 16:38:08'),
+(3, '1779727102_slika2.jpg', NULL, 1, '2026-05-25 16:38:22'),
+(4, '1779727109_slika3.jpg', NULL, 1, '2026-05-25 16:38:29'),
+(5, '1779727122_slika4.jpg', NULL, 1, '2026-05-25 16:38:42'),
+(6, '1779727129_slika5.jpg', NULL, 1, '2026-05-25 16:38:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photo_ratings`
+--
+
+CREATE TABLE `photo_ratings` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `photo_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `photo_ratings`
+--
+
+INSERT INTO `photo_ratings` (`id`, `user_id`, `photo_id`, `rating`, `comment`, `created_at`) VALUES
+(1, 1, 1, 1, NULL, '2026-05-25 16:34:37'),
+(2, 1, 5, 4, NULL, '2026-05-25 16:38:59'),
+(3, 1, 6, 5, NULL, '2026-05-25 16:39:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -137,6 +187,19 @@ ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `photo_ratings`
+--
+ALTER TABLE `photo_ratings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_user_photo` (`user_id`,`photo_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -159,6 +222,18 @@ ALTER TABLE `desired_movies`
 --
 ALTER TABLE `movies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `photo_ratings`
+--
+ALTER TABLE `photo_ratings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
